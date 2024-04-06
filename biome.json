@@ -1,0 +1,17 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+	"javascript": {
+		"parser": {
+			"unsafeParameterDecoratorsEnabled": true
+		}
+	},
+	"files": {
+		"ignore": ["src/**/*.ts"]
+	},
+	"organizeImports": {
+		"enabled": false
+	},
+	"linter": {
+		"enabled": false
+	}
+}
