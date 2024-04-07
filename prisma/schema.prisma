@@ -21,6 +21,7 @@ model User {
   backgroundImage String    @default("https://4kwallpapers.com/images/wallpapers/macos-big-sur-colorful-waves-smooth-stock-apple-aesthetic-5k-5120x2880-1495.jpg")
   viewTrending    Boolean   @default(false)
   Article         Article[]
+  Post            Post[]
 }
 
 model Post {
@@ -28,12 +29,14 @@ model Post {
   creatorId    String   @db.ObjectId
   creatorName  String
   creatorPhoto String
-  date         DateTime @default(now())
+  date         DateTime? @default(now())
   content      String
   images       String[]
-  comments     Int?
-  Likes        Int?
-  Shares       Int?
+  comments     Int?     @default(0)
+  likes        Int?     @default(0)
+  shares       Int?     @default(0)
+
+  creator User @relation(fields: [creatorId], references: [id])
 }
 
 model Article {

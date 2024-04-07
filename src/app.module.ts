@@ -7,6 +7,7 @@ import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { NotificationsModule } from './notifications/notifications.module';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -16,7 +17,9 @@ import { NotificationsModule } from './notifications/notifications.module';
       csrfPrevention: false,
       sortSchema: true
     }),
-    NotificationsModule
+    NotificationsModule,
+    UsersModule,
+    PostsModule
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
