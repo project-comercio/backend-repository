@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateNotificationInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Mutation {
+  createNotification(createNotificationInput: CreateNotificationInput!): Notification!
+  removeNotification(id: Int!): Notification!
+  updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
+}
+
+type Notification {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  notification(id: Int!): Notification!
+  notifications: [Notification!]!
+}
+
+input UpdateNotificationInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
