@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { PrismaService } from 'src/database/prisma.service';
+import { UpdateUserDescription } from './dto/update-user-description';
 
 @Injectable()
 export class UsersService {
@@ -68,6 +69,23 @@ export class UsersService {
       return;
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async upadteDescription(updateUserDescription: UpdateUserDescription): Promise<User> {
+    try {
+      const updatedUser = await this.prisma.user.update({
+        where: {
+          id: updateUserDescription.userId
+        },
+        data: {
+          description: updateUserDescription.description
+        }
+      })
+
+      return updatedUser
+    } catch (error) {
+      console.log(error)
     }
   }
 }
