@@ -19,6 +19,7 @@ model User {
   following       Int       @default(0)
   picture         String    @default("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg")
   backgroundImage String    @default("https://4kwallpapers.com/images/wallpapers/macos-big-sur-colorful-waves-smooth-stock-apple-aesthetic-5k-5120x2880-1495.jpg")
+  likes           String[]
   viewTrending    Boolean   @default(false)
   Article         Article[]
   Post            Post[]
@@ -34,7 +35,6 @@ model Post {
   images       String[]
   comments     Int?      @default(0)
   likes        Int?      @default(0)
-  likesIds     String[]
   shares       Int?      @default(0)
 
   creator User @relation(fields: [creatorId], references: [id])

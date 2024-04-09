@@ -9,6 +9,7 @@ export class User {
   followers: number
   following: number
   picture: string
+  likes: string[]
   backgroundImage: string
   viewTrending: boolean
 }

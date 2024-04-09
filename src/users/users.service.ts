@@ -81,11 +81,19 @@ export class UsersService {
         },
         data: {
           likes: { increment: 1 },
-          likesIds: {
-            push: data.userId
-          }
         },
       });
+
+      await this.prisma.user.update({
+        where: {
+          id: data.userId
+        },
+        data: {
+          likes: {
+            push: data.postId
+          }
+        }
+      })
     } catch (error) {
       throw new Error(`Falha ao curtir post: ${error}`);
     }
@@ -93,17 +101,31 @@ export class UsersService {
 
   async dislikePost(data: DislikePostDto): Promise<void> {
     try {
+      const user = await this.prisma.user.findUnique({
+        where: {
+          id: data.userId
+        }
+      })
+
       await this.prisma.post.update({
         where: {
           id: data.postId,
         },
         data: {
-          likes: { decrement: 1 },
-          likesIds: {
-            set: data.postLikesIds.filter((userId) => userId !== data.userId)
-          }
+          likes: { decrement: 1 }
         },
       });
+
+      await this.prisma.user.update({
+        where: {
+          id: data.userId
+        },
+        data: {
+          likes: {
+            set: user.likes.filter((postId) => postId !== data.postId)
+          }
+        }
+      })
     } catch (error) {
       throw new Error(`Falha ao descurtir post: ${error}`);
     }
