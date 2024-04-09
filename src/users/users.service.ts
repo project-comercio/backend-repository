@@ -3,6 +3,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { PrismaService } from 'src/database/prisma.service';
+import { LikePostDto } from './dto/like-post.dto';
+import { DislikePostDto } from './dto/dislike-post.dto';
 
 @Injectable()
 export class UsersService {
@@ -68,6 +70,42 @@ export class UsersService {
       return;
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async likePost(data: LikePostDto): Promise<void> {
+    try {
+      await this.prisma.post.update({
+        where: {
+          id: data.postId,
+        },
+        data: {
+          likes: { increment: 1 },
+          likesIds: {
+            push: data.userId
+          }
+        },
+      });
+    } catch (error) {
+      throw new Error(`Falha ao curtir post: ${error}`);
+    }
+  }
+
+  async dislikePost(data: DislikePostDto): Promise<void> {
+    try {
+      await this.prisma.post.update({
+        where: {
+          id: data.postId,
+        },
+        data: {
+          likes: { decrement: 1 },
+          likesIds: {
+            set: data.postLikesIds.filter((userId) => userId !== data.userId)
+          }
+        },
+      });
+    } catch (error) {
+      throw new Error(`Falha ao descurtir post: ${error}`);
     }
   }
 }

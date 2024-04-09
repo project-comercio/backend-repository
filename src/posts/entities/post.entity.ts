@@ -8,5 +8,6 @@ export class Post {
   images: string[]
   comments: number
   likes: number
+  likesIds: string[]
   shares: number
 }

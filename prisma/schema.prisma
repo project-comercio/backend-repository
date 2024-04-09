@@ -25,16 +25,17 @@ model User {
 }
 
 model Post {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  creatorId    String   @db.ObjectId
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  creatorId    String    @db.ObjectId
   creatorName  String
   creatorPhoto String
   date         DateTime? @default(now())
   content      String
   images       String[]
-  comments     Int?     @default(0)
-  likes        Int?     @default(0)
-  shares       Int?     @default(0)
+  comments     Int?      @default(0)
+  likes        Int?      @default(0)
+  likesIds     String[]
+  shares       Int?      @default(0)
 
   creator User @relation(fields: [creatorId], references: [id])
 }
