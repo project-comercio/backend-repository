@@ -12,6 +12,7 @@ model User {
   uuid            String    @unique
   email           String    @unique
   password        String
+  description     String?
   firstname       String
   lastname        String
   username        String    @unique

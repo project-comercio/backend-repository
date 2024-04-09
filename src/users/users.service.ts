@@ -5,6 +5,8 @@ import { User } from './entities/user.entity';
 import { PrismaService } from 'src/database/prisma.service';
 import { LikePostDto } from './dto/like-post.dto';
 import { DislikePostDto } from './dto/dislike-post.dto';
+import { Post } from 'src/posts/entities/post.entity';
+import { UpdateUserDescriptionDto } from './dto/update-user-description.dto';
 
 @Injectable()
 export class UsersService {
@@ -128,6 +130,37 @@ export class UsersService {
       })
     } catch (error) {
       throw new Error(`Falha ao descurtir post: ${error}`);
+    }
+  }
+
+  async getUserPosts(id: string): Promise<Post[]> {
+    try {
+      const userPosts = await this.prisma.post.findMany({
+        where: {
+          creatorId: id
+        }
+      })
+
+      if (userPosts.length) {
+        return userPosts
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async updateDescription(updateUserDescription: UpdateUserDescriptionDto): Promise<void> {
+    try {
+      await this.prisma.user.update({
+        where: {
+          id: updateUserDescription.userId
+        },
+        data: {
+          description: updateUserDescription.description
+        }
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 }

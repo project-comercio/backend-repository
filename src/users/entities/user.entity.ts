@@ -3,6 +3,7 @@ export class User {
   uuid: string
   email: string
   password: string
+  description?: string
   firstname: string
   lastname: string
   username: string

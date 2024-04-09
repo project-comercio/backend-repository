@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { LikePostDto } from './dto/like-post.dto';
 import { DislikePostDto } from './dto/dislike-post.dto';
+import { UpdateUserDescriptionDto } from './dto/update-user-description.dto';
 
   @Controller('users')
 export class UsersController {
@@ -43,4 +44,15 @@ export class UsersController {
   dislikePost(@Body() likePostDto: DislikePostDto) {
     return this.usersService.dislikePost(likePostDto)
   }
+
+  @Get("/getUserPosts/:id")
+  getUserPosts(@Param('id') id: string) {
+    return this.usersService.getUserPosts(id)
+  }
+
+  @Patch("/updateUserDescription")
+  updateUserDescription(@Body() updateUserDescription: UpdateUserDescriptionDto) {
+    return this.usersService.updateDescription(updateUserDescription)
+  }
+
 }
