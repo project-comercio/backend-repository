@@ -13,6 +13,17 @@ export class CommentsService {
       await this.prisma.comment.create({
         data: createCommentDto,
       });
+
+      await this.prisma.post.update({
+        where: {
+          id: createCommentDto.postId
+        },
+        data: {
+          comments: {
+            increment: 1
+          }
+        }
+      })
     } catch (error) {
       throw new Error("Não foi possível criar um comentário")
     }
