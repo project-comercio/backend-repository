@@ -8,6 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { NotificationsModule } from './notifications/notifications.module';
 import { PostsModule } from './posts/posts.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { PostsModule } from './posts/posts.module';
     }),
     NotificationsModule,
     UsersModule,
-    PostsModule
+    PostsModule,
+    CommentsModule
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

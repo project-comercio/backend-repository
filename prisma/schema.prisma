@@ -21,9 +21,11 @@ model User {
   picture         String    @default("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg")
   backgroundImage String    @default("https://4kwallpapers.com/images/wallpapers/macos-big-sur-colorful-waves-smooth-stock-apple-aesthetic-5k-5120x2880-1495.jpg")
   likes           String[]
+  newUser         Boolean   @default(false)
   viewTrending    Boolean   @default(false)
   Article         Article[]
   Post            Post[]
+  Comment         Comment[]
 }
 
 model Post {
@@ -38,7 +40,22 @@ model Post {
   likes        Int?      @default(0)
   shares       Int?      @default(0)
 
+  creator User      @relation(fields: [creatorId], references: [id])
+  Comment Comment[]
+}
+
+model Comment {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  postId       String    @db.ObjectId
+  creatorId    String    @db.ObjectId
+  content      String
+  creatorImage String
+  creatorName  String
+  createdAt    DateTime? @default(now())
+  Image        String?
+
   creator User @relation(fields: [creatorId], references: [id])
+  post    Post @relation(fields: [postId], references: [id])
 }
 
 model Article {
