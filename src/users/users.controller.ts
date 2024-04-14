@@ -50,7 +50,7 @@ export class UsersController {
     return this.usersService.getUserPosts(id)
   }
 
-  @Patch("/updateUserDescription")
+  @Post("/updateUserDescription")
   updateUserDescription(@Body() updateUserDescription: UpdateUserDescriptionDto) {
     return this.usersService.updateDescription(updateUserDescription)
   }
