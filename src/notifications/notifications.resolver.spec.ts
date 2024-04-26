@@ -1,19 +1,22 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 import { NotificationsResolver } from './notifications.resolver';
-import { NotificationsService } from './notifications.service';
 
 describe('NotificationsResolver', () => {
-  let resolver: NotificationsResolver;
+  let notificationsResolver: NotificationsResolver;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [NotificationsResolver, NotificationsService],
+    const moduleRef = await Test.createTestingModule({
+      imports: [], // Add
+      controllers: [], // Add
+      providers: [], // Add
     }).compile();
 
-    resolver = module.get<NotificationsResolver>(NotificationsResolver);
+    notificationsResolver = moduleRef.get<NotificationsResolver>(
+      NotificationsResolver,
+    );
   });
 
   it('should be defined', () => {
-    expect(resolver).toBeDefined();
+    expect(notificationsResolver).toBeDefined();
   });
 });
