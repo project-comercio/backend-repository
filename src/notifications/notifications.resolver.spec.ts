@@ -6,9 +6,9 @@ describe('NotificationsResolver', () => {
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [], // Add
-      controllers: [], // Add
-      providers: [], // Add
+      imports: [], 
+      controllers: [], 
+      providers: [], 
     }).compile();
 
     notificationsResolver = moduleRef.get<NotificationsResolver>(
