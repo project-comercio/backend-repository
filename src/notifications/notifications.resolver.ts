@@ -9,7 +9,10 @@ export class NotificationsResolver {
   constructor(private readonly notificationsService: NotificationsService) {}
 
   @Mutation(() => Notification)
-  createNotification(@Args('createNotificationInput') createNotificationInput: CreateNotificationInput) {
+  createNotification(
+    @Args('createNotificationInput')
+    createNotificationInput: CreateNotificationInput,
+  ) {
     return this.notificationsService.create(createNotificationInput);
   }
 
@@ -24,8 +27,14 @@ export class NotificationsResolver {
   }
 
   @Mutation(() => Notification)
-  updateNotification(@Args('updateNotificationInput') updateNotificationInput: UpdateNotificationInput) {
-    return this.notificationsService.update(updateNotificationInput.id, updateNotificationInput);
+  updateNotification(
+    @Args('updateNotificationInput')
+    updateNotificationInput: UpdateNotificationInput,
+  ) {
+    return this.notificationsService.update(
+      updateNotificationInput.id,
+      updateNotificationInput,
+    );
   }
 
   @Mutation(() => Notification)

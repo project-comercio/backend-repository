@@ -88,14 +88,14 @@ export class UsersService {
 
       await this.prisma.user.update({
         where: {
-          id: data.userId
+          id: data.userId,
         },
         data: {
           likes: {
-            push: data.postId
-          }
-        }
-      })
+            push: data.postId,
+          },
+        },
+      });
     } catch (error) {
       throw new Error(`Falha ao curtir post: ${error}`);
     }
@@ -105,29 +105,29 @@ export class UsersService {
     try {
       const user = await this.prisma.user.findUnique({
         where: {
-          id: data.userId
-        }
-      })
+          id: data.userId,
+        },
+      });
 
       await this.prisma.post.update({
         where: {
           id: data.postId,
         },
         data: {
-          likes: { decrement: 1 }
+          likes: { decrement: 1 },
         },
       });
 
       await this.prisma.user.update({
         where: {
-          id: data.userId
+          id: data.userId,
         },
         data: {
           likes: {
-            set: user.likes.filter((postId) => postId !== data.postId)
-          }
-        }
-      })
+            set: user.likes.filter((postId) => postId !== data.postId),
+          },
+        },
+      });
     } catch (error) {
       throw new Error(`Falha ao descurtir post: ${error}`);
     }
@@ -137,30 +137,32 @@ export class UsersService {
     try {
       const userPosts = await this.prisma.post.findMany({
         where: {
-          creatorId: id
-        }
-      })
+          creatorId: id,
+        },
+      });
 
       if (userPosts.length) {
-        return userPosts
+        return userPosts;
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-  async updateDescription(updateUserDescription: UpdateUserDescriptionDto): Promise<void> {
+  async updateDescription(
+    updateUserDescription: UpdateUserDescriptionDto,
+  ): Promise<void> {
     try {
       await this.prisma.user.update({
         where: {
-          id: updateUserDescription.userId
+          id: updateUserDescription.userId,
         },
         data: {
-          description: updateUserDescription.description
-        }
-      })
+          description: updateUserDescription.description,
+        },
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 }
