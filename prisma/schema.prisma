@@ -23,9 +23,33 @@ model User {
   likes           String[]
   newUser         Boolean   @default(false)
   viewTrending    Boolean   @default(false)
+  city            String?
+  state           String?
+  country         String?
+  telephone       String?
+  workField       String?
+  preferentes     String?
   Article         Article[]
   Post            Post[]
   Comment         Comment[]
+}
+
+model Company {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  ownerId         String    @unique @db.ObjectId
+  createdAt       DateTime? @default(now())
+  ownerName       String
+  companyName     String    @default("Empresa anônima")
+  city            String?
+  state           String?
+  country         String?
+  companyField    String?
+  address         String?
+  telephone       String?
+  cnpj            String?   @unique
+  cpf             String?   @unique
+  backgroundImage String?   @default("https://images.fastcompany.com/image/upload/wp-cms/uploads/2021/03/LinkedIn-Default-Background-2020--813x201.webp")
+  companyLogo     String?   @default("https://images.fastcompany.com/image/upload/wp-cms/uploads/2021/03/LinkedIn-Default-Background-2020--813x201.webp")
 }
 
 model Post {

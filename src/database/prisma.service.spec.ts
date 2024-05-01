@@ -7,8 +7,8 @@ describe('PrismaService', () => {
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [],
-      controllers: [], 
-      providers: [], 
+      controllers: [],
+      providers: [],
     }).compile();
 
     prismaService = moduleRef.get<PrismaService>(PrismaService);

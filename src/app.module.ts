@@ -9,6 +9,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { NotificationsModule } from './notifications/notifications.module';
 import { PostsModule } from './posts/posts.module';
 import { CommentsModule } from './comments/comments.module';
+import { CompaniesModule } from './companies/companies.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { CommentsModule } from './comments/comments.module';
     NotificationsModule,
     UsersModule,
     PostsModule,
-    CommentsModule
+    CommentsModule,
+    CompaniesModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
