@@ -7,6 +7,7 @@ import { LikePostDto } from './dto/like-post.dto';
 import { DislikePostDto } from './dto/dislike-post.dto';
 import { Post } from 'src/posts/entities/post.entity';
 import { UpdateUserDescriptionDto } from './dto/update-user-description.dto';
+import { FinishUserRegisterDto } from './dto/finish-user-register';
 
 @Injectable()
 export class UsersService {
@@ -19,7 +20,7 @@ export class UsersService {
       });
       return newUser;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -29,7 +30,7 @@ export class UsersService {
 
       if (users) return users;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -43,7 +44,7 @@ export class UsersService {
 
       if (user) return user;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -58,7 +59,7 @@ export class UsersService {
 
       return userUpdated;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -71,7 +72,7 @@ export class UsersService {
       });
       return;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -145,7 +146,7 @@ export class UsersService {
         return userPosts;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -162,7 +163,20 @@ export class UsersService {
         },
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
+  }
+
+  async finishUserRegister(
+    finishUserRegister: FinishUserRegisterDto,
+  ): Promise<void> {
+    try {
+      await this.prisma.user.update({
+        where: {
+          id: finishUserRegister.id,
+        },
+        data: finishUserRegister,
+      });
+    } catch (error) {}
   }
 }

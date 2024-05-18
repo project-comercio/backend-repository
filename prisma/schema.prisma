@@ -28,7 +28,8 @@ model User {
   country         String?
   telephone       String?
   workField       String?
-  preferentes     String?
+  preferences     String?
+  accountType     String?   @default("personal")
   Article         Article[]
   Post            Post[]
   Comment         Comment[]
