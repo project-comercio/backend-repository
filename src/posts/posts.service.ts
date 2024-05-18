@@ -15,7 +15,7 @@ export class PostsService {
       });
       return newPost;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -25,7 +25,7 @@ export class PostsService {
 
       if (posts) return posts;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -39,7 +39,7 @@ export class PostsService {
 
       if (post) return post;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -54,7 +54,7 @@ export class PostsService {
 
       return updatedPost;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -67,7 +67,7 @@ export class PostsService {
       });
       return;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

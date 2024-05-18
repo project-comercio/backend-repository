@@ -13,6 +13,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { LikePostDto } from './dto/like-post.dto';
 import { DislikePostDto } from './dto/dislike-post.dto';
 import { UpdateUserDescriptionDto } from './dto/update-user-description.dto';
+import { FinishUserRegisterDto } from './dto/finish-user-register';
 
 @Controller('users')
 export class UsersController {
@@ -63,5 +64,12 @@ export class UsersController {
     @Body() updateUserDescription: UpdateUserDescriptionDto,
   ) {
     return this.usersService.updateDescription(updateUserDescription);
+  }
+
+  @Post('/finishUserRegister')
+  finishUserRegister(
+    @Body() finishUserRegister: FinishUserRegisterDto,
+  ) {
+    return this.usersService.finishUserRegister(finishUserRegister);
   }
 }

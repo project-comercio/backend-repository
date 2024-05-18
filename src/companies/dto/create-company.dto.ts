@@ -1,7 +1,7 @@
 export class CreateCompanyDto {
   ownerId: string;
   ownerName: string;
-  companyName: string;
+  companyName?: string;
   city?: string;
   country?: string;
   state?: string;

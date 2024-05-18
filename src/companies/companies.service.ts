@@ -12,6 +12,15 @@ export class CompaniesService {
     try {
       const newCompany = await this.prisma.company.create({
         data: createCompanyDto,
+      })
+
+      await this.prisma.user.update({
+        where: {
+          id: createCompanyDto.ownerId
+        },
+        data: {
+          accountType: 'business'
+        }
       });
 
       if (newCompany) return newCompany;
